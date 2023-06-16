@@ -5,6 +5,7 @@
 #include <vector>
 #include "puzzle.hpp"
 #include "bfs.hpp"
+#include "idfs.hpp"
 #include "gbfs.hpp"
 #include "a_star.hpp"
 
@@ -73,10 +74,16 @@ int main(int argc, char *argv[]){
             if(algorithm == "-bfs"){
                 Solution s = solve_bfs(inputed_array);
                 s.print();
-            } else if(algorithm == "-gbfs"){
+            }
+            else if(algorithm == "-idfs"){
+                Solution s = solve_idfs(inputed_array);
+                s.print();
+            }
+            else if(algorithm == "-gbfs"){
                 Solution s = solve_gbfs(inputed_array, HeuristicCalculator());
                 s.print();
-            } else if(algorithm == "-astar"){
+            }
+            else if(algorithm == "-astar"){
                 Solution s = solve_a_star(inputed_array, HeuristicCalculator());
                 s.print();
             }
