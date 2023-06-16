@@ -3,7 +3,7 @@
 #### BFS    :white_check_mark:
 #### GBFS   :white_check_mark:
 #### A*     :white_check_mark:
-#### IDFS   :x:
+#### IDFS   :white_check_mark:
 #### IDA*   :x:
 
 ### For the 15 puzzle:
