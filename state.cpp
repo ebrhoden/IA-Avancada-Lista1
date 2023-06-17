@@ -1,18 +1,27 @@
 #include "state.hpp"
 #include "iostream";
-State::State(){
-    this->tiles = {};
-    this->previous_action = NONE;
-}
+
+State::State(){};
 
 State::State(vector<int> user_input, Action a){
     this->tiles = user_input;
     this->previous_action = a;
+    this->internal_representation = generate_internal_representation();
+}
+
+unsigned long long State::generate_internal_representation(){
+    unsigned long long result = 0;
+
+    for(int element : this->tiles){
+        result = result * 10 + element;
+    }
+    return result;
+
 }
 
 
 bool State::is_goal(){
-    return is_sorted(this->tiles.begin(), this->tiles.end());
+    return this->internal_representation == 12345678;
 }
 
 int State::get_blank_position(int n){

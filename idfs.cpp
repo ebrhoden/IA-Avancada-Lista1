@@ -1,5 +1,6 @@
 #include "idfs.hpp"
 
+
 bool depth_limited_search(Puzzle current_puzzle, int depth_limit, int& number_expanded_nodes){
     if(current_puzzle.state.is_goal()){
         return true;
@@ -10,7 +11,7 @@ bool depth_limited_search(Puzzle current_puzzle, int depth_limit, int& number_ex
         vector<State> neighbor_states = current_puzzle.get_neighbor_states();
 
         for(State neighbor_state: neighbor_states){
-            Puzzle child(neighbor_state, current_puzzle.state, current_puzzle.depth);
+            Puzzle child(neighbor_state, current_puzzle.state.internal_representation, current_puzzle.depth);
             bool is_done = depth_limited_search(child, depth_limit - 1, number_expanded_nodes);
             if(is_done){
                 return true;
@@ -39,3 +40,4 @@ Solution solve_idfs(vector<int> user_input){
 
     return Solution();
 }
+

@@ -35,7 +35,7 @@ Solution solve_a_star(vector<int> user_input, HeuristicCalculator h){
             vector<State> neighbor_states = current_puzzle.get_neighbor_states();
 
             for(State neighbor_state: neighbor_states){
-                Puzzle p(neighbor_state, current_puzzle.state, current_puzzle.depth + 1, h, puzzle_counter);
+                Puzzle p(neighbor_state, current_puzzle.state.internal_representation, current_puzzle.depth + 1, h, puzzle_counter);
                 puzzle_counter++;
                 open->push(p);
             }
@@ -44,3 +44,5 @@ Solution solve_a_star(vector<int> user_input, HeuristicCalculator h){
 
     return Solution();
 }
+
+

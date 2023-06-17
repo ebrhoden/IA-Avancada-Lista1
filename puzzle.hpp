@@ -13,18 +13,18 @@ class Puzzle{
     public:
 
         State state;
-        State parent_state;
         int depth; //g
         int heuristic_value; //h
         int id; //used to keep LIFO ordering when necessary. Else, just use it as 0;
+        unsigned long long parent_state_representation;
 
         //When heuristic doesnt matter
         Puzzle(State state, int id = 0);
-        Puzzle(State state, State parent_state, int depth, int id = 0);
+        Puzzle(State state, int parent_state_representation, int depth, int id = 0);
 
         //When heuristics matter
         Puzzle(State state, HeuristicCalculator &heuristic_calculator, int id = 0);
-        Puzzle(State state, State parent_state, int depth, HeuristicCalculator &heuristic_calculator, int id = 0);
+        Puzzle(State state, int parent_state_representation, int depth, HeuristicCalculator &heuristic_calculator, int id = 0);
 
         State move_blank_up(int blank_position, int n);
         State move_blank_left(int blank_position);

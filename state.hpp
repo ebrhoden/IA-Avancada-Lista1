@@ -18,11 +18,13 @@ class State{
     public:
         vector<int> tiles;
         Action previous_action;
+        unsigned long long internal_representation;
 
-        // Used to create a "empty" state, that is, the parent of a root puzzle
         State();
 
         State(vector<int> user_input, Action a = NONE);
+
+        unsigned long long generate_internal_representation();
 
         bool is_goal();
 

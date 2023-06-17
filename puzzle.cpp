@@ -3,15 +3,15 @@
 
 Puzzle::Puzzle(State state, int id) {
     this->state = state;
-    this->parent_state = State();
+    this->parent_state_representation = -1;
     this->depth = 0;
     this->heuristic_value = 0;
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, State parent_state, int depth, int id) {
+Puzzle::Puzzle(State state, int parent_state_representation, int depth, int id) {
     this->state = state;
-    this->parent_state = parent_state;
+    this->parent_state_representation = parent_state_representation;
     this->depth = depth;
     this->heuristic_value = 0;
     this->id = id;
@@ -19,15 +19,15 @@ Puzzle::Puzzle(State state, State parent_state, int depth, int id) {
 
 Puzzle::Puzzle(State state, HeuristicCalculator &heuristicCalculator, int id) {
     this->state = state;
-    this->parent_state = State();
+    this->parent_state_representation = -1;
     this->depth = 0;
     this->heuristic_value = heuristicCalculator.calculate(state.tiles);
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, State parent_state, int depth, HeuristicCalculator &heuristicCalculator, int id) {
+Puzzle::Puzzle(State state, int parent_state_representation, int depth, HeuristicCalculator &heuristicCalculator, int id) {
     this->state = state;
-    this->parent_state = parent_state;
+    this->parent_state_representation = parent_state_representation;
     this->depth = depth;
     this->heuristic_value = heuristicCalculator.calculate(state.tiles);
     this->id = id;
@@ -83,7 +83,7 @@ State Puzzle::move_blank_down(int blank_position, int n){
 }
 
 bool Puzzle::is_parent_state_null(){
-    return this->parent_state.tiles.empty();
+    return this->parent_state_representation == -1;
 }
 
 bool Puzzle::is_given_state_equal_to_parent_state(State state){
@@ -114,7 +114,7 @@ bool Puzzle::is_given_state_equal_to_parent_state(State state){
     cout << "***************************" << endl << endl;
     */
 
-    return this->parent_state.tiles == state.tiles;
+    return this->parent_state_representation == state.internal_representation;
 }
 
 vector<State> Puzzle::get_neighbor_states(){
