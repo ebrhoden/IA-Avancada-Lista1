@@ -89,20 +89,27 @@ int main(int argc, char *argv[]){
             }
         }
     } else {
+
+        // Some experiments
+
         vector<int> v1 {0,6,1,7,4,2,3,8,5};
         vector<int> v2 {6,0,1,7,4,2,3,8,5};
-        vector<int> v3 {6,4,1,7,0,2,3,8,5};
+        vector<int> v3 {0,1,2,3,4,5,6,7,8};
+        vector<int> v4 {0,1,2,3,4,5,6,7,8};
 
         Puzzle p1(v1);
-        Puzzle p2(v2, p1.state, 88);
+        Puzzle p2(v2, p1.state.internal_representation, 88);
         vector<State> states = p2.get_neighbor_states();
         for(State s : states){
             for(int i : s.tiles){
                 cout << i << " ";
             }
+            cout << "Meu id eh: " << s.internal_representation;
             cout << endl;
         }
 
+        cout << "FINAL: " << State(v3).generate_internal_representation();
+        cout << "FINAL: " << State(v4).generate_internal_representation();
 
     }
     return 1;
