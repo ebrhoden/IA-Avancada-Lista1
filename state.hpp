@@ -19,6 +19,9 @@ class State{
         vector<int> tiles;
         Action previous_action;
         unsigned long long internal_representation;
+        int blank_position;
+        int board_size; // 9 or 16
+        int board_dimension; // 3 or 4 (n x n board)
 
         State();
 
@@ -28,12 +31,17 @@ class State{
 
         bool is_goal();
 
-        int get_blank_position(int n);
+        int get_blank_position();
 
-        bool can_move_blank_up(int blank_position, int n);
-        bool can_move_blank_left(int blank_position, int n);
-        bool can_move_blank_right(int blank_position, int n);
-        bool can_move_blank_down(int blank_position, int n);
+        bool can_move_blank_up();
+        bool can_move_blank_left();
+        bool can_move_blank_right();
+        bool can_move_blank_down();
+
+        State move_blank_up();
+        State move_blank_left();
+        State move_blank_right();
+        State move_blank_down();
 
 };
 
