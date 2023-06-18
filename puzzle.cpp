@@ -3,15 +3,15 @@
 
 Puzzle::Puzzle(State state, int id) {
     this->state = state;
-    this->parent_state_representation = -1;
+    this->parent_puzzle = nullptr;
     this->depth = 0;
     this->heuristic_value = 0;
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, int parent_state_representation, int depth, int id) {
+Puzzle::Puzzle(State state, Puzzle* parent_puzzle, int depth, int id) {
     this->state = state;
-    this->parent_state_representation = parent_state_representation;
+    this->parent_puzzle = parent_puzzle;
     this->depth = depth;
     this->heuristic_value = 0;
     this->id = id;
@@ -19,71 +19,22 @@ Puzzle::Puzzle(State state, int parent_state_representation, int depth, int id) 
 
 Puzzle::Puzzle(State state, HeuristicCalculator &heuristicCalculator, int id) {
     this->state = state;
-    this->parent_state_representation = -1;
+    this->parent_puzzle = nullptr;
     this->depth = 0;
     this->heuristic_value = heuristicCalculator.calculate(state.tiles);
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, int parent_state_representation, int depth, HeuristicCalculator &heuristicCalculator, int id) {
+Puzzle::Puzzle(State state, Puzzle* parent_puzzle, int depth, HeuristicCalculator &heuristicCalculator, int id) {
     this->state = state;
-    this->parent_state_representation = parent_state_representation;
+    this->parent_puzzle = parent_puzzle;
     this->depth = depth;
     this->heuristic_value = heuristicCalculator.calculate(state.tiles);
     this->id = id;
 }
 
-State Puzzle::move_blank_up(int blank_position, int n){
-    vector<int> q = this->state.tiles;
-
-    //blank tile receives the value of the tile in the line above
-    q[blank_position] = this->state.tiles[blank_position - n];
-    //tile from the line above is now blank
-    q[blank_position - n] = 0;
-
-    State s(q, UP);
-    return s;
-
-}
-
-State Puzzle::move_blank_left(int blank_position){
-    vector<int> q = this->state.tiles;
-
-    //blank tile receives the value of the tile to its left
-    q[blank_position] = this->state.tiles[blank_position - 1];
-    //tile from the line above is now blank
-    q[blank_position - 1] = 0;
-
-    State s(q, LEFT);
-    return s;
-}
-
-State Puzzle::move_blank_right(int blank_position){
-    vector<int> q = this->state.tiles;
-
-    //blank tile  receives the value of the tile in the line below
-    q[blank_position] = this->state.tiles[blank_position + 1];
-    //tile from the line above is now blank
-    q[blank_position + 1] = 0;
-
-    State s(q, RIGHT);
-    return s;
-}
-
-State Puzzle::move_blank_down(int blank_position, int n){
-    vector<int> q = this->state.tiles;
-
-    //blank tile receives the value of the tile in the line above
-    q[blank_position] = this->state.tiles[blank_position + n];
-    //tile from the line above is now blank
-    q[blank_position + n] = 0;
-
-    State s(q, DOWN);
-    return s;
-}
-
 bool Puzzle::is_parent_state_null(){
-    return this->parent_state_representation == -1;
+    return this->parent_puzzle == nullptr;
 }
 
 bool Puzzle::is_given_state_equal_to_parent_state(State state){
@@ -114,37 +65,36 @@ bool Puzzle::is_given_state_equal_to_parent_state(State state){
     cout << "***************************" << endl << endl;
     */
 
-    return this->parent_state_representation == state.internal_representation;
+    return this->parent_puzzle->state.internal_representation == state.internal_representation;
 }
 
 vector<State> Puzzle::get_neighbor_states(){
     vector<State> neighbors;
-    int n = (int) sqrt(this->state.tiles.size());
-    int blank_position = this->state.get_blank_position(n);
 
-    if(this->state.can_move_blank_up(blank_position, n)){
-        State generated_state = move_blank_up(blank_position, n);
+    if(this->state.can_move_blank_up()){
+        State generated_state = this->state.move_blank_up();
+        if(!(this->is_given_state_equal_to_parent_state(generated_state))){
+
+            neighbors.push_back(generated_state);
+        }
+    }
+
+    if(this->state.can_move_blank_left()){
+        State generated_state = this->state.move_blank_left();
         if(!(this->is_given_state_equal_to_parent_state(generated_state))){
             neighbors.push_back(generated_state);
         }
     }
 
-    if(this->state.can_move_blank_left(blank_position, n)){
-        State generated_state = move_blank_left(blank_position);
+    if(this->state.can_move_blank_right()){
+        State generated_state = this->state.move_blank_right();
         if(!(this->is_given_state_equal_to_parent_state(generated_state))){
             neighbors.push_back(generated_state);
         }
     }
 
-    if(this->state.can_move_blank_right(blank_position, n)){
-        State generated_state = move_blank_right(blank_position);
-        if(!(this->is_given_state_equal_to_parent_state(generated_state))){
-            neighbors.push_back(generated_state);
-        }
-    }
-
-    if(this->state.can_move_blank_down(blank_position, n)){
-        State generated_state = move_blank_down(blank_position, n);
+    if(this->state.can_move_blank_down()){
+        State generated_state = this->state.move_blank_down();
         if(!(this->is_given_state_equal_to_parent_state(generated_state))){
             neighbors.push_back(generated_state);
         }
