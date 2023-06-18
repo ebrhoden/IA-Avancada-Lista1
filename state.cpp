@@ -12,6 +12,7 @@ State::State(vector<int> user_input, Action a){
     this->blank_position = this->get_blank_position();
 }
 
+// TODO: write a version of this hashing function that does not overflow on the 15 puzzle
 unsigned long long State::generate_internal_representation(){
     unsigned long long result = 0;
 
@@ -22,6 +23,7 @@ unsigned long long State::generate_internal_representation(){
 
 }
 
+// TODO: fix the goal once the new hashing function has been defined
 bool State::is_goal(){
     return this->internal_representation == 12345678;
 }
