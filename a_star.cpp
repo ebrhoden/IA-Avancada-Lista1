@@ -12,7 +12,7 @@ Solution solve_a_star(vector<int> user_input, HeuristicCalculator h){
     int puzzle_counter = 1;
     int num_expanded_nodes = 0;
     priority_queue<Puzzle, vector<Puzzle>, AStarComparator>* open = new priority_queue<Puzzle, vector<Puzzle>, AStarComparator>();
-    set<vector<int>>* closed = new set<vector<int>>();
+    unordered_set<int>* closed = new unordered_set<int>();
     int initial_heuristic_value;
     clock_t start_time = clock();
 
@@ -25,8 +25,8 @@ Solution solve_a_star(vector<int> user_input, HeuristicCalculator h){
         Puzzle current_puzzle = open->top();
         open->pop();
 
-        if(closed->find(current_puzzle.state.tiles) == closed->end()){
-            closed->insert(current_puzzle.state.tiles);
+        if(closed->find(current_puzzle.state.internal_representation) == closed->end()){
+            closed->insert(current_puzzle.state.internal_representation);
             if(current_puzzle.state.is_goal()){
                 return Solution(num_expanded_nodes, current_puzzle.depth, start_time, (double)h.accumulator/h.called_count, initial_heuristic_value);
             }

@@ -4,7 +4,7 @@
 #include "solution.hpp"
 #include "puzzle.hpp"
 #include <queue>
-#include <set>
+#include <unordered_set>
 
 using namespace std;
 

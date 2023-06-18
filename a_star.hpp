@@ -3,7 +3,7 @@
 #include "puzzle.hpp"
 #include "solution.hpp"
 #include "queue"
-#include "set"
+#include "unordered_set"
 
 using namespace std;
 

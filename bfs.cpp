@@ -11,7 +11,7 @@ Solution solve_bfs(vector<int> user_input){
     }
 
     queue<Puzzle>* open = new queue<Puzzle>();
-    set<int>* closed = new set<int>();
+    unordered_set<int>* closed = new unordered_set<int>();
     open->push(Puzzle(s));
     closed->insert(s.internal_representation);
 
