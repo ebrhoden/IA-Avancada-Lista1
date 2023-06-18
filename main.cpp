@@ -98,7 +98,8 @@ int main(int argc, char *argv[]){
         vector<int> v4 {0,1,2,3,4,5,6,7,8};
 
         Puzzle p1(v1);
-        Puzzle p2(v2, p1.state.internal_representation, 88);
+        Puzzle p2(v2, &p1, p1.depth + 1);
+
         vector<State> states = p2.get_neighbor_states();
         for(State s : states){
             for(int i : s.tiles){

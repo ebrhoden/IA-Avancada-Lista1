@@ -8,20 +8,20 @@
 using namespace std;
 
 struct AStarComparator {
-    bool operator()(Puzzle &a, Puzzle &b) {
+    bool operator()(Puzzle* &a, Puzzle* &b) {
         // f = g + h
-        int f_a = a.heuristic_value + a.depth;
-        int f_b = b.heuristic_value + b.depth;
+        int f_a = a->heuristic_value + a->depth;
+        int f_b = b->heuristic_value + b->depth;
 
         if(f_a != f_b){
             return f_a > f_b;
         }
         // g
-        else if(a.heuristic_value != b.heuristic_value){
-            return a.heuristic_value > b.heuristic_value;
+        else if(a->heuristic_value != b->heuristic_value){
+            return a->heuristic_value > b->heuristic_value;
         }
         // LIFO
-        return a.id < b.id;
+        return a->id < b->id;
     }
 };
 

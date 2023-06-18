@@ -9,17 +9,17 @@
 using namespace std;
 
 struct GBFSComparator {
-    bool operator()(Puzzle &a, Puzzle &b) {
+    bool operator()(Puzzle* &a, Puzzle* &b) {
         // h
-        if(a.heuristic_value != b.heuristic_value){
-            return a.heuristic_value > b.heuristic_value;
+        if(a->heuristic_value != b->heuristic_value){
+            return a->heuristic_value > b->heuristic_value;
         }
         // g
-        else if(a.depth != b.depth){
-            return a.depth < b.depth;
+        else if(a->depth != b->depth){
+            return a->depth < b->depth;
         }
         // LIFO
-        return a.id < b.id;
+        return a->id < b->id;
     }
 };
 
