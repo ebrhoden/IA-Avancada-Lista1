@@ -32,7 +32,7 @@ pair<int, int> depth_limited_search_idastar(Puzzle& current_puzzle, HeuristicCal
 
 Solution solve_idastar(vector<int> user_input, HeuristicCalculator h){
     State s(user_input);
-    Puzzle initial_puzzle(user_input);
+    Puzzle initial_puzzle(user_input, h);
 
 
     clock_t start_time = clock();
