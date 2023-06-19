@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool depth_limited_search(Puzzle p, int depth_limit, int& number_expanded_ndoes);
+bool depth_limited_search(Puzzle& p, int depth_limit, int& number_expanded_ndoes);
 Solution solve_idfs(vector<int> user_input);
 
 #endif // IDFS_HPP_INCLUDED
