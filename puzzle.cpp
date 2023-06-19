@@ -70,6 +70,8 @@ bool Puzzle::is_given_state_equal_to_parent_state(State state){
 
 vector<State> Puzzle::get_neighbor_states(){
     vector<State> neighbors;
+    //At most 4 neighbors
+    neighbors.reserve(4);
 
     if(this->state.can_move_blank_up()){
         State generated_state = this->state.move_blank_up();
