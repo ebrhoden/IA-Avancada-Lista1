@@ -17,6 +17,8 @@ class HeuristicCalculator {
 
     // Manhattan distance
     int calculate(const vector<int> tiles);
+
+    double average_result();
 };
 
 #endif // HEURISTIC_CALCULATOR_HPP_INCLUDED

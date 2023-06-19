@@ -57,3 +57,10 @@ int HeuristicCalculator::calculate(const vector<int> tiles){
     return sum;
 
 }
+
+double HeuristicCalculator::average_result(){
+    if(this->called_count == 0)
+        return 0;
+    else
+        return (double)this->accumulator/this->called_count;
+}
