@@ -9,6 +9,8 @@ HeuristicCalculator::HeuristicCalculator() {
 
 int HeuristicCalculator::calculate(const vector<int> tiles){
     int n = tiles.size();
+    int sum = 0;
+    /*
     int dim = sqrt(n);
     int aux = 0;
     vector<vector<int>> matrix;
@@ -25,8 +27,6 @@ int HeuristicCalculator::calculate(const vector<int> tiles){
 
     }
 
-    int sum = 0;
-
     for (int x = 0; x < dim; x++) // x-dimension, traversing rows (i)
         for (int y = 0; y < dim; y++) { // y-dimension, traversing cols (j)
             int value = matrix[x][y]; // tiles array contains board elements
@@ -38,10 +38,10 @@ int HeuristicCalculator::calculate(const vector<int> tiles){
                 sum += abs(dx) + abs(dy);
             }
     }
+    */
 
 
 
-    /*
     for(int i = 0; i < n; i++){
         //Goal tile placement is ((n-1) div 3, (n-1) mod 3)
         //DO NOT CONSIDER THE BLANK TILE, OTHERWISE THE HEURISTIC IS NOT ADMISSIBLE
@@ -49,7 +49,7 @@ int HeuristicCalculator::calculate(const vector<int> tiles){
             sum += abs((int)tiles[i] / 3 - (int)i / 3) + abs(tiles[i] % 3 - i % 3);
         }
     }
-    */
+
 
     this->called_count++;
     this->accumulator += sum;
