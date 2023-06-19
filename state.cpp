@@ -6,26 +6,32 @@ State::State(){};
 State::State(vector<int> user_input, Action a){
     this->tiles = user_input;
     this->previous_action = a;
-    this->internal_representation = generate_internal_representation();
     this->board_size = user_input.size();
     this->board_dimension = (int) sqrt(user_input.size());
     this->blank_position = this->get_blank_position();
+    this->internal_representation = generate_internal_representation();
 }
 
-// TODO: write a version of this hashing function that does not overflow on the 15 puzzle
 unsigned long long State::generate_internal_representation(){
     unsigned long long result = 0;
 
-    for(int element : this->tiles){
-        result = result * 10 + element;
+    // There are 64 bits, so shift at MOST 60 bits left
+    int shift_left_number = 60;
+
+    for(int i = 0; i < this->board_size; i++){
+        unsigned long long current_value = this->tiles[i];
+        result |= current_value << shift_left_number;
+        shift_left_number -= 4;
     }
     return result;
 
 }
 
-// TODO: fix the goal once the new hashing function has been defined
 bool State::is_goal(){
-    return this->internal_representation == 12345678;
+    if(this->board_size == 9){
+        return this->internal_representation == 81985529054232576;
+    }
+    return this->internal_representation == 81985529216486895;
 }
 
 int State::get_blank_position(){

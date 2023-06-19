@@ -4,7 +4,7 @@ Solution solve_gbfs(vector<int> user_input, HeuristicCalculator h){
     int puzzle_counter = 1;
     int num_expanded_nodes = 0;
     priority_queue<Puzzle*, vector<Puzzle*>, GBFSComparator>* open = new priority_queue<Puzzle*, vector<Puzzle*>, GBFSComparator>();
-    unordered_set<int>* closed = new unordered_set<int>();
+    unordered_set<unsigned long long>* closed = new unordered_set<unsigned long long>();
     int initial_heuristic_value;
     clock_t start_time = clock();
 

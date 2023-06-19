@@ -6,7 +6,7 @@ Solution solve_bfs(vector<int> user_input){
     int initial_heuristic_value = HeuristicCalculator().calculate(user_input);
 
     queue<Puzzle*>* open = new queue<Puzzle*>();
-    unordered_set<int>* closed = new unordered_set<int>();
+    unordered_set<unsigned long long>* closed = new unordered_set<unsigned long long>();
 
     State s(user_input);
     open->push(new Puzzle(s));
