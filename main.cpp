@@ -100,7 +100,8 @@ int main(int argc, char *argv[]){
         vector<int> v1 {0,6,1,7,4,2,3,8,5};
         vector<int> v2 {6,0,1,7,4,2,3,8,5};
         vector<int> v3 {0,1,2,3,4,5,6,7,8};
-        vector<int> v4 {0,1,2,3,4,5,6,7,8};
+        vector<int> v4 {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+        vector<int> v5 {9,8,7,6,5,4,3,2,15,14,13,12,11,1,10,0};
 
         Puzzle p1(v1);
         Puzzle p2(v2, &p1, p1.depth + 1);
@@ -114,8 +115,17 @@ int main(int argc, char *argv[]){
             cout << endl;
         }
 
-        cout << "FINAL: " << State(v3).generate_internal_representation();
-        cout << "FINAL: " << State(v4).generate_internal_representation();
+        State x(v3);
+        State y(v4);
+
+        cout << "FINAL: " << x.board_size << endl;
+        cout << "FINAL: " << y.board_size << endl;
+
+        State s(v4);
+        cout << "OH AI OH: " << s.generate_internal_representation() << endl;
+
+        State xw(v5);
+        cout << "OH AI OH MAIS UM: " << xw.generate_internal_representation() << endl;
 
     }
     return 1;
