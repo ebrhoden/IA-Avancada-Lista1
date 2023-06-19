@@ -20,7 +20,7 @@ Solution solve_gbfs(vector<int> user_input, HeuristicCalculator h){
         if(closed->find(current_puzzle->state.internal_representation) == closed->end()){
             closed->insert(current_puzzle->state.internal_representation);
             if(current_puzzle->state.is_goal()){
-                return Solution(num_expanded_nodes, current_puzzle->depth, start_time, (double)h.accumulator/h.called_count, initial_heuristic_value);
+                return Solution(num_expanded_nodes, current_puzzle->depth, start_time, h.average_result(), initial_heuristic_value);
             }
 
             num_expanded_nodes++;
