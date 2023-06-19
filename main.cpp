@@ -8,6 +8,7 @@
 #include "idfs.hpp"
 #include "gbfs.hpp"
 #include "a_star.hpp"
+#include "idastar.hpp"
 
 using namespace std;
 
@@ -85,6 +86,10 @@ int main(int argc, char *argv[]){
             }
             else if(algorithm == "-astar"){
                 Solution s = solve_a_star(inputed_array, HeuristicCalculator());
+                s.print();
+            }
+            else if(algorithm == "-idastar"){
+                Solution s = solve_idastar(inputed_array, HeuristicCalculator());
                 s.print();
             }
         }
