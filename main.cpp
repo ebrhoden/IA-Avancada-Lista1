@@ -47,11 +47,11 @@ int main(int argc, char *argv[]){
         b) Multiple 8 puzzles
         c) Multiple 16 puzzles
         */
-        if(argc > 17){
-            aux_string = argv[18];
+        if(argc >= 17){
+            aux_string = argv[17];
             if (aux_string.find(',') != string::npos) {
                 //MULTIPLE 16 arrays
-                inputed_arrays = get_inputed_arrays(16, argc, argv);
+                inputed_arrays = get_inputed_arrays(15, argc, argv);
             } else {
                 aux_string = argv[10];
                 if (aux_string.find(',') != string::npos){
@@ -100,19 +100,16 @@ int main(int argc, char *argv[]){
         vector<int> v1 {0,6,1,7,4,2,3,8,5};
         vector<int> v2 {6,0,1,7,4,2,3,8,5};
         vector<int> v3 {0,1,2,3,4,5,6,7,8};
-        vector<int> v4 {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+        vector<int> v4 {1,2,3,4,5,6,7,8,9,0,10,11,12,13,14,15};
         vector<int> v5 {9,8,7,6,5,4,3,2,15,14,13,12,11,1,10,0};
 
         Puzzle p1(v1);
         Puzzle p2(v2, &p1, p1.depth + 1);
 
-        vector<State> states = p2.get_neighbor_states();
+        vector<State> states = p1.get_neighbor_states();
         for(State s : states){
-            for(int i : s.tiles){
-                cout << i << " ";
-            }
-            cout << "Meu id eh: " << s.internal_representation;
-            cout << endl;
+                Puzzle aux(s, &p1, p1.depth + 1);
+                aux.print();
         }
 
         State x(v3);
@@ -126,6 +123,8 @@ int main(int argc, char *argv[]){
 
         State xw(v5);
         cout << "OH AI OH MAIS UM: " << xw.generate_internal_representation() << endl;
+
+
 
     }
     return 1;
