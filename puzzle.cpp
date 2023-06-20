@@ -21,7 +21,7 @@ Puzzle::Puzzle(State state, HeuristicCalculator &heuristicCalculator, int id) {
     this->state = state;
     this->parent_puzzle = nullptr;
     this->depth = 0;
-    this->heuristic_value = heuristicCalculator.calculate(state.tiles);
+    this->heuristic_value = heuristicCalculator.calculate(state);
     this->id = id;
 }
 
@@ -29,7 +29,7 @@ Puzzle::Puzzle(State state, Puzzle* parent_puzzle, int depth, HeuristicCalculato
     this->state = state;
     this->parent_puzzle = parent_puzzle;
     this->depth = depth;
-    this->heuristic_value = heuristicCalculator.calculate(state.tiles);
+    this->heuristic_value = heuristicCalculator.calculate(state);
     this->id = id;
 }
 

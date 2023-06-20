@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <stdlib.h>
-#include "math.h"
+#include "state.hpp"
 #include<iostream>
 
 using namespace std;
@@ -16,7 +16,7 @@ class HeuristicCalculator {
     HeuristicCalculator();
 
     // Manhattan distance
-    int calculate(const vector<int> tiles);
+    int calculate(const State state);
 
     double average_result();
 };

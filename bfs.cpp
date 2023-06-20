@@ -2,13 +2,13 @@
 
 Solution solve_bfs(vector<int> user_input){
     clock_t start_time = clock();
-    int num_expanded_nodes = 0;
-    int initial_heuristic_value = HeuristicCalculator().calculate(user_input);
 
     queue<Puzzle*>* open = new queue<Puzzle*>();
     unordered_set<unsigned long long>* closed = new unordered_set<unsigned long long>();
 
     State s(user_input);
+    int num_expanded_nodes = 0;
+    int initial_heuristic_value = HeuristicCalculator().calculate(s);
     open->push(new Puzzle(s));
     closed->insert(s.internal_representation);
 

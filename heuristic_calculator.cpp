@@ -7,11 +7,12 @@ HeuristicCalculator::HeuristicCalculator() {
     this->accumulator = 0;
 }
 
-int HeuristicCalculator::calculate(const vector<int> tiles){
-    int n = tiles.size();
+int HeuristicCalculator::calculate(const State state){
     int sum = 0;
+    int n = state.tiles.size();
+    int dim = (int)sqrt(n);
     /*
-    int dim = sqrt(n);
+
     int aux = 0;
     vector<vector<int>> matrix;
     vector<int> aux_array;
@@ -45,8 +46,8 @@ int HeuristicCalculator::calculate(const vector<int> tiles){
     for(int i = 0; i < n; i++){
         //Goal tile placement is ((n-1) div 3, (n-1) mod 3)
         //DO NOT CONSIDER THE BLANK TILE, OTHERWISE THE HEURISTIC IS NOT ADMISSIBLE
-        if(tiles[i] != 0){
-            sum += abs((int)tiles[i] / 3 - (int)i / 3) + abs(tiles[i] % 3 - i % 3);
+        if(state.tiles[i] != 0){
+            sum += abs((int)state.tiles[i] / dim - (int)i / dim) + abs(state.tiles[i] % dim - i % dim);
         }
     }
 
