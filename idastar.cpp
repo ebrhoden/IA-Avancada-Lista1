@@ -34,8 +34,8 @@ pair<int, int> depth_limited_search_idastar(Puzzle& current_puzzle, HeuristicCal
 
 Solution solve_idastar(vector<int> user_input, HeuristicCalculator h){
     State s(user_input);
-    Puzzle initial_puzzle(user_input, h);
 
+    Puzzle initial_puzzle(user_input, h);
 
     clock_t start_time = clock();
     int initial_heuristic_value = initial_puzzle.heuristic_value;
@@ -44,11 +44,16 @@ Solution solve_idastar(vector<int> user_input, HeuristicCalculator h){
     int f_limit = initial_puzzle.heuristic_value;
 
     while(f_limit != numeric_limits<int>::max()){
+        Puzzle initial_puzzle(user_input, h);
         pair<int,int> solution = depth_limited_search_idastar(initial_puzzle, h, f_limit, number_expanded_nodes);
         if(solution.second != -1){
             return Solution(number_expanded_nodes, solution.second, start_time, h.average_result(), initial_heuristic_value);
         }
         f_limit = solution.first;
+        // I belive this is the line we should instantiate the initial puzzle again,
+        // but then results dont match with the professor's.
+        //Puzzle initial_puzzle(user_input, h);
+
     }
 
     return Solution();
