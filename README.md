@@ -3,8 +3,8 @@
 #### BFS    :white_check_mark:
 #### GBFS   :white_check_mark:
 #### A*     :white_check_mark:
-#### IDFS   :white_check_mark:
+#### IDFS   :warning: (might be too inneficient)
 #### IDA*   :x:
 
 ### For the 15 puzzle:
-A* :x:
+A* :warning: (might be too inneficient)
