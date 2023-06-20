@@ -1,7 +1,7 @@
 #ifndef SOLUTION_HPP_INCLUDED
 #define SOLUTION_HPP_INCLUDED
 
-#include <time.h>
+#include<time.h>
 #include<iostream>
 #include<iomanip>
 

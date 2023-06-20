@@ -35,5 +35,3 @@ Solution solve_gbfs(vector<int> user_input, HeuristicCalculator h){
 
     return Solution();
 }
-
-
