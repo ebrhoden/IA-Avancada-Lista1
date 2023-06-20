@@ -1,0 +1,23 @@
+The code provided is a C++ implementation of various search algorithms for solving the 8-puzzle and 15-puzzle problems. The implemented algorithms include Breadth-First Search (BFS), Iterative Deepening Depth-First Search (IDFS), Greedy Best-First Search (GBFS), A* Search, and Iterative Deepening A* Search (IDA*).
+
+The main.cpp file contains the main function, which takes command line arguments to specify the algorithm to use and the puzzle(s) to solve. The input puzzles are represented as arrays of integers, where 0 represents the blank tile. The inputed_arrays vector stores the input puzzles.
+
+The puzzle.hpp file defines the Puzzle class, which represents a state of the puzzle. The Puzzle class contains methods for generating neighbor states, checking if a state is the goal state, and moving the blank tile in different directions.
+
+The state.hpp file defines the State class, which represents a state of the puzzle. The State class contains methods for generating the internal representation of the state, checking if a state is the goal state, and moving the blank tile in different directions.
+
+The bfs.hpp file contains the solve_bfs function, which implements the Breadth-First Search algorithm to solve the puzzle. The function uses a queue to store the puzzle states to be explored and an unordered_set to store the explored states.
+
+The idfs.hpp file contains the solve_idfs function, which implements the Iterative Deepening Depth-First Search algorithm to solve the puzzle. The function uses a recursive depth-limited search to explore the puzzle states up to a certain depth limit.
+
+The gbfs.hpp file contains the solve_gbfs function, which implements the Greedy Best-First Search algorithm to solve the puzzle. The function uses a priority queue to store the puzzle states to be explored, ordered by the heuristic value of each state.
+
+The a_star.hpp file contains the solve_a_star function, which implements the A* Search algorithm to solve the puzzle. The function uses a priority queue to store the puzzle states to be explored, ordered by the sum of the heuristic value and the depth of each state.
+
+The idastar.hpp file contains the solve_idastar function, which implements the Iterative Deepening A* Search algorithm to solve the puzzle. The function uses a recursive depth-limited search to explore the puzzle states up to a certain f-value limit, which is the sum of the heuristic value and the depth of each state.
+
+The heuristic_calculator.hpp file defines the HeuristicCalculator class, which calculates the heuristic value for a given state. The class keeps track of the number of times the heuristic function is called and the sum of the heuristic values calculated.
+
+The solution.hpp file defines the Solution class, which represents the solution to a puzzle. The Solution class contains information about the number of expanded nodes, the depth of the solution, the start time of the search, the average heuristic value, and the initial heuristic value.
+
+Overall, the code provides a framework for solving the 8-puzzle and 15-puzzle problems using various search algorithms. The main function can be used to test the algorithms on different input puzzles.

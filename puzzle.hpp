@@ -11,20 +11,19 @@ using namespace std;
 
 class Puzzle{
     public:
-
         State state;
         int depth; //g
         int heuristic_value; //h
-        int id; //used to keep LIFO ordering when necessary. Else, just use it as 0;
+        long long id; //used to keep LIFO ordering when necessary. Else, just use it as 0;
         Puzzle* parent_puzzle;
 
         //When heuristic doesnt matter
-        Puzzle(State state, int id = 0);
-        Puzzle(State state, Puzzle* parent_puzzle, int depth, int id = 0);
+        Puzzle(State state, long long id = 0);
+        Puzzle(State state, Puzzle* parent_puzzle, int depth, long long id = 0);
 
         //When heuristics matter
-        Puzzle(State state, HeuristicCalculator &heuristic_calculator, int id = 0);
-        Puzzle(State state, Puzzle* parent_puzzle, int depth, HeuristicCalculator &heuristic_calculator, int id = 0);
+        Puzzle(State state, HeuristicCalculator &heuristic_calculator, long long id = 0);
+        Puzzle(State state, Puzzle* parent_puzzle, int depth, HeuristicCalculator &heuristic_calculator, long long id = 0);
 
         bool is_parent_state_null();
         bool is_given_state_equal_to_parent_state(State state);
@@ -34,6 +33,5 @@ class Puzzle{
 
         void print();
 };
-
 
 #endif // PUZZLE_HPP_INCLUDED

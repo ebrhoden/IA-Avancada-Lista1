@@ -1,34 +1,36 @@
 #include "idastar.hpp"
 
-pair<int, int> depth_limited_search_idastar(Puzzle& current_puzzle, HeuristicCalculator &h, int f_limit, int &number_expanded_nodes){
-
+pair<int, int> depth_limited_search_idastar(Puzzle& current_puzzle, HeuristicCalculator &h, int f_limit, int &number_expanded_nodes) {
     int current_f = current_puzzle.heuristic_value + current_puzzle.depth;
-    if(current_f > f_limit){
-        return pair<int,int>{current_f, -1};
+    if (current_f > f_limit) {
+        return pair<int, int>{current_f, -1};
     }
 
-    if(current_puzzle.state.is_goal()){
-        return pair<int,int>{-1, current_puzzle.depth};
+    if (current_puzzle.state.is_goal()) {
+        return pair<int, int>{-1, current_puzzle.depth};
     }
 
     int next_limit = numeric_limits<int>::max();
     number_expanded_nodes++;
     vector<State> neighbor_states = current_puzzle.get_neighbor_states();
 
-    for(State neighbor_state: neighbor_states){
+    for (State neighbor_state : neighbor_states) {
         Puzzle child(neighbor_state, &current_puzzle, current_puzzle.depth + 1, h);
-        pair<int,int> recursive_result = depth_limited_search_idastar(child, h, f_limit, number_expanded_nodes);
+        pair<int, int> recursive_result = depth_limited_search_idastar(child, h, f_limit, number_expanded_nodes);
 
-        if(recursive_result.second != -1){
-            return pair<int,int>{-1, recursive_result.second};
+        if (recursive_result.second != -1) {
+            return pair<int, int>{-1, recursive_result.second};
         }
 
         next_limit = min<int>(next_limit, recursive_result.first);
     }
 
+    if (next_limit == numeric_limits<int>::max()) {
+        return pair<int, int>{next_limit, -1};
+    }
+
     return pair<int, int>{next_limit, -1};
 }
-
 
 Solution solve_idastar(vector<int> user_input, HeuristicCalculator h){
     State s(user_input);
