@@ -70,6 +70,7 @@ int main(int argc, char *argv[]){
             inputed_arrays.push_back(aux_array);
         }
 
+        // cout << "Algorithm: " << algorithm << endl;
         for(vector<int> inputed_array : inputed_arrays){
             if(algorithm == "-bfs"){
                 Solution s = solve_bfs(inputed_array);
