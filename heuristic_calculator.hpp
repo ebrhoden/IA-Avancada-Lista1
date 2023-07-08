@@ -16,7 +16,7 @@ class HeuristicCalculator {
     HeuristicCalculator();
 
     // Manhattan distance
-    int calculate(const State state);
+    int calculate(const State &state);
 
     double average_result();
 };

@@ -1,7 +1,7 @@
 #include "puzzle.hpp"
 #include "heuristic_calculator.hpp"
 
-Puzzle::Puzzle(State state, unsigned long long id) {
+Puzzle::Puzzle(const State &state, const unsigned long long &id) {
     this->state = state;
     this->parent_puzzle = nullptr;
     this->depth = 0;
@@ -9,7 +9,7 @@ Puzzle::Puzzle(State state, unsigned long long id) {
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, Puzzle* parent_puzzle, int depth, unsigned long long id) {
+Puzzle::Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, const unsigned long long &id) {
     this->state = state;
     this->parent_puzzle = parent_puzzle;
     this->depth = depth;
@@ -17,7 +17,7 @@ Puzzle::Puzzle(State state, Puzzle* parent_puzzle, int depth, unsigned long long
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, HeuristicCalculator &heuristic_calculator, unsigned long long id) {
+Puzzle::Puzzle(const State &state, HeuristicCalculator &heuristic_calculator, const unsigned long long &id) {
     this->state = state;
     this->parent_puzzle = nullptr;
     this->depth = 0;
@@ -25,7 +25,7 @@ Puzzle::Puzzle(State state, HeuristicCalculator &heuristic_calculator, unsigned 
     this->id = id;
 }
 
-Puzzle::Puzzle(State state, Puzzle* parent_puzzle, int depth, HeuristicCalculator &heuristic_calculator, unsigned long long id) {
+Puzzle::Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, HeuristicCalculator &heuristic_calculator, const unsigned long long &id) {
     this->state = state;
     this->parent_puzzle = parent_puzzle;
     this->depth = depth;
@@ -37,7 +37,7 @@ bool Puzzle::is_parent_state_null() {
     return this->parent_puzzle == nullptr;
 }
 
-bool Puzzle::is_given_state_equal_to_parent_state(State state) {
+bool Puzzle::is_given_state_equal_to_parent_state(const State &state) {
     if (is_parent_state_null()) {
         return false;
     }

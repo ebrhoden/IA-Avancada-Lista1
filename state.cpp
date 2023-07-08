@@ -3,7 +3,7 @@
 
 State::State(){};
 
-State::State(vector<int> user_input, Action a){
+State::State(vector<int> &user_input, Action a){
     this->tiles = user_input;
     this->previous_action = a;
     this->board_size = user_input.size();

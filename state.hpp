@@ -25,7 +25,7 @@ class State{
 
         State();
 
-        State(vector<int> user_input, Action a = NONE);
+        State(vector<int> &user_input, Action a = NONE);
 
         unsigned long long generate_internal_representation();
 

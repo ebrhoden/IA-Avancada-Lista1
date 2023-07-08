@@ -18,15 +18,15 @@ class Puzzle{
         Puzzle* parent_puzzle;
 
         //When heuristic doesnt matter
-        Puzzle(State state, unsigned long long id = 0);
-        Puzzle(State state, Puzzle* parent_puzzle, int depth, unsigned long long id = 0);
+        Puzzle(const State &state, const unsigned long long &id = 0);
+        Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, const unsigned long long &id = 0);
 
         //When heuristics matter
-        Puzzle(State state, HeuristicCalculator &heuristic_calculator, unsigned long long id = 0);
-        Puzzle(State state, Puzzle* parent_puzzle, int depth, HeuristicCalculator &heuristic_calculator, unsigned long long id = 0);
+        Puzzle(const State &state, HeuristicCalculator &heuristic_calculator, const unsigned long long &id = 0);
+        Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, HeuristicCalculator &heuristic_calculator, const unsigned long long &id = 0);
 
         bool is_parent_state_null();
-        bool is_given_state_equal_to_parent_state(State state);
+        bool is_given_state_equal_to_parent_state(const State &state);
 
         // This DOES NOT include the parent state of the current state as a valid successor
         vector<State> get_neighbor_states();

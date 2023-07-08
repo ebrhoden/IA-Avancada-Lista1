@@ -7,7 +7,7 @@ HeuristicCalculator::HeuristicCalculator() {
     this->accumulator = 0;
 }
 
-int HeuristicCalculator::calculate(const State state){
+int HeuristicCalculator::calculate(const State &state){
     int sum = 0;
     int n = state.tiles.size();
     int dim = (int)sqrt(n);
