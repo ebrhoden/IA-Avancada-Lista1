@@ -5,6 +5,7 @@
 #include "state.hpp"
 #include <vector>
 #include<iostream>
+#include<memory>
 
 using namespace std;
 
@@ -15,15 +16,15 @@ class Puzzle{
         int depth; //g
         int heuristic_value; //h
         unsigned long long id; //used to keep LIFO ordering when necessary. Else, just use it as 0;
-        Puzzle* parent_puzzle;
+        shared_ptr<Puzzle> parent_puzzle;
 
         //When heuristic doesnt matter
         Puzzle(const State &state, const unsigned long long &id = 0);
-        Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, const unsigned long long &id = 0);
+        Puzzle(const State &state, shared_ptr<Puzzle> parent_puzzle, const int &depth, const unsigned long long &id = 0);
 
         //When heuristics matter
         Puzzle(const State &state, HeuristicCalculator &heuristic_calculator, const unsigned long long &id = 0);
-        Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, HeuristicCalculator &heuristic_calculator, const unsigned long long &id = 0);
+        Puzzle(const State &state, shared_ptr<Puzzle> parent_puzzle, const int &depth, HeuristicCalculator &heuristic_calculator, const unsigned long long &id = 0);
 
         bool is_parent_state_null();
         bool is_given_state_equal_to_parent_state(const State &state);

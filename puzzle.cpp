@@ -9,9 +9,9 @@ Puzzle::Puzzle(const State &state, const unsigned long long &id) {
     this->id = id;
 }
 
-Puzzle::Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, const unsigned long long &id) {
+Puzzle::Puzzle(const State &state, shared_ptr<Puzzle> parent_puzzle, const int &depth, const unsigned long long &id) {
     this->state = state;
-    this->parent_puzzle = parent_puzzle;
+    this->parent_puzzle = move(parent_puzzle);
     this->depth = depth;
     this->heuristic_value = 0;
     this->id = id;
@@ -25,9 +25,9 @@ Puzzle::Puzzle(const State &state, HeuristicCalculator &heuristic_calculator, co
     this->id = id;
 }
 
-Puzzle::Puzzle(const State &state, Puzzle* parent_puzzle, const int &depth, HeuristicCalculator &heuristic_calculator, const unsigned long long &id) {
+Puzzle::Puzzle(const State &state, shared_ptr<Puzzle> parent_puzzle, const int &depth, HeuristicCalculator &heuristic_calculator, const unsigned long long &id) {
     this->state = state;
-    this->parent_puzzle = parent_puzzle;
+    this->parent_puzzle = move(parent_puzzle);
     this->depth = depth;
     this->heuristic_value = heuristic_calculator.calculate(state);
     this->id = id;
