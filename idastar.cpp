@@ -11,6 +11,7 @@ pair<int, int> depth_limited_search_idastar(Puzzle& current_puzzle, HeuristicCal
     }
 
     int next_limit = numeric_limits<int>::max();
+    /*
     number_expanded_nodes++;
     vector<State> neighbor_states = current_puzzle.get_neighbor_states();
 
@@ -28,6 +29,7 @@ pair<int, int> depth_limited_search_idastar(Puzzle& current_puzzle, HeuristicCal
     if (next_limit == numeric_limits<int>::max()) {
         return pair<int, int>{next_limit, -1};
     }
+    */
 
     return pair<int, int>{next_limit, -1};
 }

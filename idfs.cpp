@@ -4,6 +4,7 @@ bool depth_limited_search(Puzzle& current_puzzle, int depth_limit, int& number_e
     if(current_puzzle.state.is_goal()){
         return true;
     }
+    /*
 
     if(depth_limit > 0){
         number_expanded_nodes ++;
@@ -21,6 +22,7 @@ bool depth_limited_search(Puzzle& current_puzzle, int depth_limit, int& number_e
             }
         }
     }
+    */
 
     return false;
 }

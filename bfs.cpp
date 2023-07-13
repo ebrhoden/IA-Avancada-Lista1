@@ -12,6 +12,7 @@ Solution solve_bfs(vector<int> user_input){
     open->push(new Puzzle(s));
     closed->insert(s.internal_representation);
 
+    /*
     while(!open->empty()){
 
         Puzzle* current_puzzle = open->front();
@@ -34,6 +35,7 @@ Solution solve_bfs(vector<int> user_input){
             }
         }
     }
+    */
 
 
     return Solution();

@@ -13,6 +13,7 @@ Solution solve_gbfs(vector<int> user_input, HeuristicCalculator h){
     initial_heuristic_value = initial_puzzle_pointer->heuristic_value;
     open->push(initial_puzzle_pointer);
 
+    /*
     while(!open->empty()){
         Puzzle* current_puzzle = open->top();
         open->pop();
@@ -32,6 +33,7 @@ Solution solve_gbfs(vector<int> user_input, HeuristicCalculator h){
             }
         }
     }
+    */
 
     return Solution();
 }
