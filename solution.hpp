@@ -4,11 +4,13 @@
 #include<time.h>
 #include<iostream>
 #include<iomanip>
+#include<stack>
+#include "puzzle.hpp"
 
 class Solution{
     public:
         int number_expanded_nodes;
-        int depth;
+        Puzzle solution_puzzle;
         clock_t start_time;
         double average_heuristic_value;
         int initial_heuristic_value;
@@ -16,8 +18,9 @@ class Solution{
 
         Solution();
 
-        Solution(int number_expanded_nodes, int depth, clock_t start_time, double average_heuristic_value, int initial_heuristic_value);
+        Solution(int number_expanded_nodes, Puzzle solution_puzzle, clock_t start_time, double average_heuristic_value, int initial_heuristic_value);
         void print();
+        void print_path();
 };
 
 

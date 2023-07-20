@@ -33,7 +33,7 @@ vector<vector<int>> get_inputed_arrays(int size_of_array, int argc, char *argv[]
 
 int main(int argc, char *argv[]){
     static unsigned int node_counter = 0;
-    string algorithm = "-bfs";
+    string algorithm;
     vector<vector<int>> inputed_arrays;
 
     if(argc > 10){
@@ -75,22 +75,27 @@ int main(int argc, char *argv[]){
             if(algorithm == "-bfs"){
                 Solution s = solve_bfs(inputed_array);
                 s.print();
+                //s.print_path();
             }
             else if(algorithm == "-idfs"){
                 Solution s = solve_idfs(inputed_array);
                 s.print();
+                //s.print_path();
             }
             else if(algorithm == "-gbfs"){
                 Solution s = solve_gbfs(inputed_array, HeuristicCalculator());
                 s.print();
+                //s.print_path();
             }
             else if(algorithm == "-astar"){
                 Solution s = solve_a_star(inputed_array, HeuristicCalculator());
                 s.print();
+                //s.print_path();
             }
             else if(algorithm == "-idastar"){
                 Solution s = solve_idastar(inputed_array, HeuristicCalculator());
                 s.print();
+                //s.print_path();
             }
         }
     } else {

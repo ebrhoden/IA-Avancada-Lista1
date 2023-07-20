@@ -6,9 +6,9 @@
 #include <vector>
 #include<iostream>
 #include<memory>
+#include<map>
 
 using namespace std;
-
 
 class Puzzle{
     public:
@@ -17,6 +17,8 @@ class Puzzle{
         int heuristic_value; //h
         unsigned long long id; //used to keep LIFO ordering when necessary. Else, just use it as 0;
         shared_ptr<Puzzle> parent_puzzle;
+
+        Puzzle();
 
         //When heuristic doesnt matter
         Puzzle(const State &state, const unsigned long long &id = 0);
@@ -33,6 +35,8 @@ class Puzzle{
         vector<State> get_neighbor_states();
 
         void print();
+
+        void print_path();
 };
 
 #endif // PUZZLE_HPP_INCLUDED

@@ -1,33 +1,33 @@
 #include "idfs.hpp"
 
-bool depth_limited_search(Puzzle& current_puzzle, int depth_limit, int& number_expanded_nodes){
+Puzzle depth_limited_search(Puzzle& current_puzzle, int depth_limit, int& number_expanded_nodes){
     if(current_puzzle.state.is_goal()){
-        return true;
+        return current_puzzle;
     }
-    /*
 
     if(depth_limit > 0){
         number_expanded_nodes ++;
         vector<State> neighbor_states = current_puzzle.get_neighbor_states();
 
+        shared_ptr<Puzzle> current_puzzle_pointer = make_shared<Puzzle>(current_puzzle);
         for(State neighbor_state: neighbor_states){
             if(neighbor_state.is_goal()){
-                return true;
+                return Puzzle(neighbor_state, current_puzzle_pointer, current_puzzle.depth + 1);
             } else {
-                Puzzle child(neighbor_state, &current_puzzle, current_puzzle.depth + 1);
-                bool is_done = depth_limited_search(child, depth_limit - 1, number_expanded_nodes);
-                if(is_done){
-                    return true;
+                Puzzle child(neighbor_state, current_puzzle_pointer, current_puzzle.depth + 1);
+                Puzzle result = depth_limited_search(child, depth_limit - 1, number_expanded_nodes);
+                if(result.depth != -1){
+                    return result;
                 }
             }
         }
     }
-    */
 
-    return false;
+    return Puzzle();
 }
 
 Solution solve_idfs(vector<int> user_input){
+
     clock_t start_time = clock();
 
     State s(user_input);
@@ -37,9 +37,9 @@ Solution solve_idfs(vector<int> user_input){
     int initial_heuristic_value = HeuristicCalculator().calculate(s);
 
     for(int depth_limit = 0; depth_limit < numeric_limits<int>::max(); depth_limit++) {
-        bool is_done = depth_limited_search(initial_puzzle, depth_limit, num_expanded_nodes);
-        if(is_done) {
-            return Solution(num_expanded_nodes, depth_limit, start_time, 0, initial_heuristic_value);
+        Puzzle result = depth_limited_search(initial_puzzle, depth_limit, num_expanded_nodes);
+        if(result.depth != -1) {
+            return Solution(num_expanded_nodes, result, start_time, 0, initial_heuristic_value);
         }
     }
 

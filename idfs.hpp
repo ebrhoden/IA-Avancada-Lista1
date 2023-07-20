@@ -7,7 +7,7 @@
 
 using namespace std;
 
-bool depth_limited_search(Puzzle& current_puzzle, int depth_limit, int& number_expanded_nodes, unordered_set<unsigned long long>& visited);
+Puzzle depth_limited_search(Puzzle& current_puzzle, int depth_limit, int& number_expanded_nodes);
 Solution solve_idfs(vector<int> user_input);
 
 #endif // IDFS_HPP_INCLUDED
